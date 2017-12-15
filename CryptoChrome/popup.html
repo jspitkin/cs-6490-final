@@ -1,24 +1,24 @@
 <!doctype html>
 <html>
 <head>
-  <title>Popup for Proxy API Test</title>
+  <title>CryptoChrome</title>
   <link href="./popup.css" type="text/css" rel="stylesheet">
 </head>
 <body>
-  <h1>Proxy Configuration</h1>
+  <h1>CryptoChrome</h1>
   <div role="main">
     <form id="proxyForm">
-      <fieldset id="system">
+<!--       <fieldset id="system">
         <legend>System Settings</legend>
         <input type="radio" name="proxyType" id="proxyTypeSystem" value="system">
         <label for="proxyTypeSystem">Use the <em>system's proxy settings</em>.</label>
-      </fieldset>
+      </fieldset> -->
       <fieldset id="direct">
         <legend>Direct Connection</legend>
         <input type="radio" name="proxyType" id="proxyTypeDirect" value="direct">
-        <label for="proxyTypeDirect">Your computer is <em>directly connected</em> to the internet; no need for a proxy.</label>
+        <label for="proxyTypeDirect">Connect the computer directly. Unsecure over public WiFi.</label>
       </fieldset>
-      <fieldset id="pac_script">
+<!--       <fieldset id="pac_script">
         <legend>Automatic Configuration</legend>
         <input type="radio" name="proxyType" id="proxyTypeAutoconfig" value="autoconfig">
         <label for="proxyTypeAutoconfig">Your proxy supports <em>automatic configuration</em>.</label>
@@ -28,7 +28,7 @@
           <input type="url" name="autoconfigURL" id="autoconfigURL">
           <input type="hidden" name="autoconfigData" id="autoconfigData">
         </section>
-      </fieldset>
+      </fieldset> -->
       <fieldset id="fixed_servers">
         <legend>Manual Proxy</legend>
         <input type="radio" name="proxyType" id="proxyTypeManual" value="manual">
@@ -48,10 +48,10 @@
             <label for="proxyPortHttp">Port</label>
             <input type="text" name="proxyPortHttp" id="proxyPortHttp" class="port">
 
-            <input type="checkbox" name="singleProxyForEverything" id="singleProxyForEverything">
-            <label for="singleProxyForEverything">Use the same proxy server for all protocols</label>
+<!--             <input type="checkbox" name="singleProxyForEverything" id="singleProxyForEverything"> -->
+<!--             <label for="singleProxyForEverything">Use the same proxy server for all protocols</label> -->
           </fieldset>
-          <fieldset>
+<!--           <fieldset>
             <legend>HTTPS</legend>
             <label for="proxyHostHttps">Host</label>
             <select id="proxySchemeHttps" name="proxySchemeHttps">
@@ -64,35 +64,7 @@
 
             <label for="proxyPortHttps">Port</label>
             <input type="text" name="proxyPortHttps" id="proxyPortHttps" class="port">
-          </fieldset>
-          <fieldset>
-            <legend>FTP</legend>
-            <label for="proxyHostFtp">Host</label>
-            <select id="proxySchemeFtp" name="proxySchemeFtp">
-              <option selected value="http">http://</option>
-              <option value="https">https://</option>
-              <option value="socks4">socks4://</option>
-              <option value="socks5">socks5://</option>
-            </select>
-            <input type="text" name="proxyHostFtp" id="proxyHostFtp">
-
-            <label for="proxyPortFtp">Port</label>
-            <input type="text" name="proxyPortFtp" id="proxyPortFtp" class="port">
-          </fieldset>
-          <fieldset>
-            <legend>Fallback</legend>
-            <label for="proxyHostFallback">Host</label>
-            <select id="proxySchemeFallback" name="proxySchemeFallback">
-              <option selected value="http">http://</option>
-              <option value="https">https://</option>
-              <option value="socks4">socks4://</option>
-              <option value="socks5">socks5://</option>
-            </select>
-            <input type="text" name="proxyHostFallback" id="proxyHostFallback">
-
-            <label for="proxyPortFallback">Port</label>
-            <input type="text" name="proxyPortFallback" id="proxyPortFallback" class="port">
-          </fieldset>
+          </fieldset> -->
           <fieldset>
             <label for="bypassList">Bypass proxy for these hosts:</label>
             <textarea id="bypassList" name="bypassList" placeholder="<local>,192.168.1.1/16, .example.com"></textarea>
