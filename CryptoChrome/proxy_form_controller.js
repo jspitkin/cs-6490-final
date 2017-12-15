@@ -72,7 +72,7 @@ ProxyFormController.WindowTypes = {
 };
 
 /**
- * The extension's level of control of Chrome's roxy setting
+ * The extension's level of control of Chrome's proxy setting
  * @enum {string}
  */
 ProxyFormController.LevelOfControl = {
@@ -674,9 +674,9 @@ ProxyFormController.prototype = {
 
     // If we can't access Incognito settings, throw a message and return.
     if (!this.isAllowedIncognitoAccess_) {
-      var msg = "I'm sorry, Dave, I'm afraid I can't do that. Give me access " +
-                "to Incognito settings by checking the checkbox labeled " +
-                "'Allow in Incognito mode', which is visible at " +
+      var msg = "Hello Professor, please go into " +
+                "Incognito settings and check the box labeled " +
+                "'Allow in Incognito mode'. You can access settings at " +
                 "chrome://extensions.";
       this.generateAlert_(msg, false);
       return;
