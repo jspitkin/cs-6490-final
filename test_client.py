@@ -46,7 +46,7 @@ while(1):
     except:
         break
 
-print('From Server: ', str(decrypt_text(buffer, key)))
+print('From Server: ', decrypt_text(buffer, key).decode())
 with open('output.html', 'w') as f:
-    f.write(str(decrypt_text(buffer, key)))
+    f.write(decrypt_text(buffer, key).decode())
 client_socket.close()

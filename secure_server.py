@@ -10,7 +10,6 @@ from socket import *
 import requests
 import math
 
-CLIENT_PORT = 12000
 SERVER_PORT = 12001
 
 
@@ -35,6 +34,8 @@ def receive(socket):
         try:
             client_socket.settimeout(1)
             response = client_socket.recv(1024)
+            print(response)
+            print('-----')
             buffer = buffer + response
         except socket.Timeouterror:
             break
@@ -88,6 +89,7 @@ def decrypt_text(ciphertext, key):
         print("Key incorrect or message corrupted")
         return ""
     return plaintext
+
 
 if __name__ == "__main__":
     main()
