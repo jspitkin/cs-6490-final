@@ -8,59 +8,30 @@
   <h1>CryptoChrome</h1>
   <div role="main">
     <form id="proxyForm">
-<!--       <fieldset id="system">
+      <fieldset id="system">
         <legend>System Settings</legend>
         <input type="radio" name="proxyType" id="proxyTypeSystem" value="system">
         <label for="proxyTypeSystem">Use the <em>system's proxy settings</em>.</label>
-      </fieldset> -->
+      </fieldset>
       <fieldset id="direct">
         <legend>Direct Connection</legend>
         <input type="radio" name="proxyType" id="proxyTypeDirect" value="direct">
         <label for="proxyTypeDirect">Connect the computer directly. Unsecure over public WiFi.</label>
       </fieldset>
-<!--       <fieldset id="pac_script">
-        <legend>Automatic Configuration</legend>
-        <input type="radio" name="proxyType" id="proxyTypeAutoconfig" value="autoconfig">
-        <label for="proxyTypeAutoconfig">Your proxy supports <em>automatic configuration</em>.</label>
-
-        <section>
-          <label for="autoconfigURL">Autoconfiguration URL (PAC file)</label>
-          <input type="url" name="autoconfigURL" id="autoconfigURL">
-          <input type="hidden" name="autoconfigData" id="autoconfigData">
-        </section>
-      </fieldset> -->
       <fieldset id="fixed_servers">
         <legend>Manual Proxy</legend>
         <input type="radio" name="proxyType" id="proxyTypeManual" value="manual">
         <label for="proxyTypeManual">Secure By Proxy</em>.</label>
         <section>
-          <fieldset>
+<!--           <fieldset>
             <legend>HTTP</legend>
             <label for="proxyHostHttp">Host</label>
             <select id="proxySchemeHttp" name="proxySchemeHttp">
               <option selected value="http">http://</option>
-              <option value="https">https://</option>
-              <option value="socks4">socks4://</option>
-              <option value="socks5">socks5://</option>
             </select>
             <input type="text" name="proxyHostHttp" id="proxyHostHttp">
-
             <label for="proxyPortHttp">Port</label>
             <input type="text" name="proxyPortHttp" id="proxyPortHttp" class="port">
-          </fieldset>
-<!--           <fieldset>
-            <legend>HTTPS</legend>
-            <label for="proxyHostHttps">Host</label>
-            <select id="proxySchemeHttps" name="proxySchemeHttps">
-              <option selected value="http">http://</option>
-              <option value="https">https://</option>
-              <option value="socks4">socks4://</option>
-              <option value="socks5">socks5://</option>
-            </select>
-            <input type="text" name="proxyHostHttps" id="proxyHostHttps">
-
-            <label for="proxyPortHttps">Port</label>
-            <input type="text" name="proxyPortHttps" id="proxyPortHttps" class="port">
           </fieldset> -->
           <fieldset>
             <label for="bypassList">Bypass proxy for these hosts:</label>

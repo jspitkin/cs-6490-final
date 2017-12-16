@@ -295,9 +295,12 @@ ProxyFormController.prototype = {
    */
   getProxyImpl_: function(type) {
     var result = {
-      scheme: document.getElementById('proxyScheme' + type).value,
-      host: document.getElementById('proxyHost' + type).value,
-      port: parseInt(document.getElementById('proxyPort' + type).value, 10)
+      // scheme: document.getElementById('proxyScheme' + type).value,
+      scheme: 'http',
+      host: 'localhost',
+      port: 12001
+      // host: document.getElementById('proxyHost' + type).value,
+      // port: parseInt(document.getElementById('proxyPort' + type).value, 10)
     };
     return (result.scheme && result.host && result.port) ? result : undefined;
   },
@@ -607,12 +610,12 @@ ProxyFormController.prototype = {
           return {mode: 'auto_detect'};
       case ProxyFormController.ProxyTypes.FIXED:
         var config = {mode: 'fixed_servers'};
-        if (this.singleProxy) {
-          config.rules = {
-            singleProxy: this.singleProxy,
-            bypassList: this.bypassList
-          };
-        } else {
+        // if (this.singleProxy) {
+        //   config.rules = {
+        //     singleProxy: this.singleProxy,
+        //     bypassList: this.bypassList
+        //   };
+        // } else {
           config.rules = {
             proxyForHttp: this.httpProxy,
             proxyForHttps: this.httpsProxy,
@@ -620,7 +623,7 @@ ProxyFormController.prototype = {
             fallbackProxy: this.fallbackProxy,
             bypassList: this.bypassList
           };
-        }
+        // }
         return config;
     }
   },
