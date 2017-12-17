@@ -34,8 +34,6 @@ def receive(socket):
         try:
             client_socket.settimeout(1)
             response = client_socket.recv(1024)
-            print(response)
-            print('-----')
             buffer = buffer + response
         except socket.Timeouterror:
             break
@@ -86,7 +84,7 @@ def decrypt_text(ciphertext, key):
     try:
         plaintext
     except ValueError:
-        print("Key incorrect or message corrupted")
+        print "Key incorrect or message corrupted"
         return ""
     return plaintext
 
