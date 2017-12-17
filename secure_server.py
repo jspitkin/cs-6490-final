@@ -79,7 +79,8 @@ def decrypt_text(ciphertext, key):
     nonce = ciphertext[0:16]
     tag = ciphertext[16:32]
     ciphertext = ciphertext[32:]
-    cipher = AES.new(key, AES.MODE_EAX, nonce)
+    # cipher = AES.new(key, AES.MODE_EAX, nonce)
+    cipher = AES.new(key, AES.MODE_CTR, nonce)
     plaintext = cipher.decrypt(ciphertext)
     try:
         plaintext
