@@ -22,10 +22,16 @@ def main():
     while 1:
         conn_sock, addr = serv_sock.accept()
         packet = conn_sock.recv(1024)
-        plaintext = decrypt_text(packet, key)
-        response = make_http_request(plaintext)
-        encrypted_response = encrypt_text(response, key)
-        conn_sock.send(encrypted_response)
+        if 'CONNECT' in packet.decode():
+            continue
+        elif 'GET' in packet.decode():
+            if len(packet.split()) < 1:
+                continue
+            url = packet.split()[1]
+            response = make_http_request(url)
+            #encrypted_response = encrypt_text(response, key)
+            encrypted_response = response
+            conn_sock.send(encrypted_response)
 
 
 def receive(socket):
@@ -79,13 +85,12 @@ def decrypt_text(ciphertext, key):
     nonce = ciphertext[0:16]
     tag = ciphertext[16:32]
     ciphertext = ciphertext[32:]
-    # cipher = AES.new(key, AES.MODE_EAX, nonce)
-    cipher = AES.new(key, AES.MODE_CTR, nonce)
+    cipher = AES.new(key, AES.MODE_EAX, nonce)
     plaintext = cipher.decrypt(ciphertext)
     try:
         plaintext
     except ValueError:
-        print "Key incorrect or message corrupted"
+        print("Key incorrect or message corrupted")
         return ""
     return plaintext
 
