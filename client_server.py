@@ -26,16 +26,15 @@ def main():
         if 'CONNECT' in packet.decode():
             continue
         elif 'GET' in packet.decode():
-            if len(packet.split()) < 1:
+            if len(packet.split()) < 1 or packet.split()[1] == '':
                 continue
             url = packet.split()[1]
-            #encrypted_url = encrypt_text(url, key)
             sock = socket(AF_INET, SOCK_STREAM)
             sock.connect(('', SERVER_PORT))
             sock.send(url)
             encrypted_response = receive(sock)
-            response = decrypt_text(encrypted_response, key)
-            send_response(response, conn_sock)
+            #response = decrypt_text(encrypted_response, key)
+            send_response(encrypted_response, conn_sock)
 
 
 
@@ -47,13 +46,13 @@ def receive(socket):
             socket.settimeout(1)
             response = socket.recv(1024)
             buffer = buffer + response
-        except socket.Timeouterror:
+        except timeout:
             break
     return buffer
 
 
 def send_response(response, socket):
-    packet_count = math.ceil(len(resonse) / 1024)
+    packet_count = math.ceil(len(response) / 1024)
     packet_num = 0
     start = 0
     end = 1023
@@ -92,7 +91,9 @@ def decrypt_text(ciphertext, key):
     tag = ciphertext[16:32]
     ciphertext = ciphertext[32:]
     cipher = AES.new(key, AES.MODE_EAX, nonce)
+    print(ciphertext)
     plaintext = cipher.decrypt(ciphertext)
+    print(plaintext)
     try:
         plaintext
     except ValueError:

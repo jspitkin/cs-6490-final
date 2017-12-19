@@ -22,10 +22,9 @@ def main():
     while 1:
         conn_sock, addr = serv_sock.accept()
         packet = conn_sock.recv(1024)
-        url = decrypt_text(packet, key)
-        response = make_http_request(url)
-        encrypted_response = encrypt_text(response, key)
-        send_response(encrypted_response, conn_sock)
+        response = make_http_request(packet)
+        #encrypted_response = encrypt_text(response, key)
+        send_response(response, conn_sock)
 
 
 def receive(socket):
@@ -41,7 +40,7 @@ def receive(socket):
 
 
 def send_response(response, socket):
-    packet_count = math.ceil(len(resonse) / 1024)
+    packet_count = math.ceil(len(response) / 1024)
     packet_num = 0
     start = 0
     end = 1023
