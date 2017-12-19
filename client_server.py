@@ -10,30 +10,42 @@ from socket import *
 import requests
 import math
 
+CLIENT_PORT = 12001
 SERVER_PORT = 12000
 
 
 def main():
     key = read_key('aes-key.bin')
     serv_sock = socket(AF_INET, SOCK_STREAM)
-    serv_sock.bind(('', SERVER_PORT))
+    serv_sock.bind(('', CLIENT_PORT))
     serv_sock.listen(1)
 
     while 1:
         conn_sock, addr = serv_sock.accept()
         packet = conn_sock.recv(1024)
-        url = decrypt_text(packet, key)
-        response = make_http_request(url)
-        encrypted_response = encrypt_text(response, key)
-        send_response(encrypted_response, conn_sock)
+        if 'CONNECT' in packet.decode():
+            continue
+        elif 'GET' in packet.decode():
+            if len(packet.split()) < 1:
+                continue
+            url = packet.split()[1]
+            #encrypted_url = encrypt_text(url, key)
+            sock = socket(AF_INET, SOCK_STREAM)
+            sock.connect(('', SERVER_PORT))
+            sock.send(url)
+            encrypted_response = receive(sock)
+            response = decrypt_text(encrypted_response, key)
+            send_response(response, conn_sock)
+
+
 
 
 def receive(socket):
     buffer = b""
     while(1):
         try:
-            client_socket.settimeout(1)
-            response = client_socket.recv(1024)
+            socket.settimeout(1)
+            response = socket.recv(1024)
             buffer = buffer + response
         except socket.Timeouterror:
             break
